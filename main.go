@@ -27,7 +27,7 @@ type Doctor struct {
 
 func main() {
 	// Initialize OpenAI client
-	client := openai.NewClient(option.WithAPIKey("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"))
+	client := openai.NewClient(option.WithAPIKey("api-key"))
 
 	// Terminal input reader
 	reader := bufio.NewReader(os.Stdin)
