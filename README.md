@@ -1,120 +1,111 @@
-# 🏥 AI-Super-Clinic Chatbot
+# 🏥 AI Super Clinic Chatbot
 
-An AI-powered Doctor's Appointment Chat Application built with Golang and OpenAI's Function Calling capabilities.
+A conversational AI assistant for doctor appointment scheduling built with Go and OpenAI's Function Calling API.
 
 ## 📖 Overview
 
-This application simulates a virtual assistant for a doctor's clinic, enabling users to check doctor availability and book appointments through natural language interactions. It leverages OpenAI's Chat API with Function Calling to process user queries and interact with a predefined doctor schedule.
+This chatbot helps patients book appointments by checking doctor availability in real-time. It understands natural language queries and manages appointment scheduling through an interactive chat interface.
 
-## 🚀 Features
+**Key Features:**
+- 🤖 Natural language conversation for appointment booking
+- 📅 Real-time doctor availability checking  
+- 🔍 Alternative time slot suggestions
+- 👨‍⚕️ Multi-doctor, multi-specialty support
+- 📊 CSV-based schedule management
 
-- Interactive chat interface for appointment scheduling
-- Integration with OpenAI's Chat API and Function Calling
-- Checks doctor availability against a CSV-based schedule
-- Handles natural language inputs for seamless user experience
+## 🚀 How to Run
 
-## 🛠️ Prerequisites
+### Prerequisites
+- Go 1.22 or higher
+- OpenAI API key
 
-- Go 1.18 or higher
-- OpenAI API Key
+### Quick Start
 
-## 📦 Installation
-
-1. **Clone the Repository**
+1. **Clone and setup:**
    ```bash
    git clone https://github.com/jamil225/AI-Super-Clinic-Chatbot.git
    cd AI-Super-Clinic-Chatbot
-   ```
-
-2. **Install Dependencies**
-   ```bash
    go mod tidy
    ```
 
-3. **Set Up Environment Variables**
-
-   Set your OpenAI API key as an environment variable:
+2. **Configure API key:**
    ```bash
-   export OPENAI_API_KEY=your_openai_api_key
+   export OPENAI_API_KEY="your_openai_api_key_here"
    ```
+   
+   *Alternative: Replace the API key directly in `main.go` line 28*
 
-   *Alternatively*, you can directly replace the placeholder in `main.go` with your API key:
-   ```go
-   client := openai.NewClient(option.WithAPIKey("your_openai_api_key"))
-   ```
-
-## 📄 Usage
-
-1. **Run the Application**
+3. **Run the application:**
    ```bash
    go run main.go
    ```
 
-2. **Interact with the Chatbot**
-
-   After running the application, you'll be prompted to enter your queries. For example:
+4. **Start chatting:**
    ```
-   You: Is Dr. Smith available on 2025-05-20 at 10:00?
-   ```
-
-   The chatbot will respond based on the availability data provided in `doctor_schedule.csv`.
-
-3. **Exit the Application**
-
-   To terminate the chat, type:
-   ```
-   exit
+   Welcome to the Super Clinic Chatbot!
+   Type 'exit' to quit.
+   You: Is Dr. Ahmad available tomorrow at 10 AM?
    ```
 
-## 📂 Project Structure
+## 💬 Usage Examples
 
+**Check availability:**
 ```
-├── doctor_schedule.csv   // Contains the doctor's availability schedule
-├── go.mod                // Go module file
-├── go.sum                // Go dependencies checksum file
-├── main.go               // Main application file
-└── README.md             // Project documentation
+You: Is Dr. Jamil Ahmad available on 2025-01-21 at 10:00?
 ```
 
-## 🧠 How It Works
+**Book appointment:**
+```
+You: I want to book an appointment with a cardiologist for tomorrow morning
+```
 
-1. **Initialization**
+**Get schedule info:**
+```
+You: give slot info
+```
 
-   The application initializes the OpenAI client using the provided API key and sets up the system and assistant roles to guide the chatbot's behavior.
+**Exit:**
+```
+You: exit
+```
 
-2. **User Interaction Loop**
+## 📁 Project Structure
 
-   The application enters a loop where it continuously prompts the user for input, processes the input, and responds accordingly.
+```
+├── main.go                 # Main application with AI logic
+├── doctor_schedule.csv     # Doctor availability data
+├── go.mod                  # Go dependencies
+└── README.md              # Documentation
+```
 
-3. **Function Calling**
+## 🏥 Doctor Schedule Format
 
-   When a user query pertains to checking a doctor's availability, the application utilizes OpenAI's Function Calling feature to invoke the `is_doctor_available` function. This function checks the `doctor_schedule.csv` file to determine availability and returns the result to the chatbot, which then communicates it to the user.
-
-## 📊 Doctor Schedule Format
-
-The `doctor_schedule.csv` file should be structured as follows:
+The `doctor_schedule.csv` contains doctor availability:
 
 ```csv
-doctor_name,date,time
-Dr. Smith,2025-05-20,10:00
-Dr. Johnson,2025-05-21,14:30
+First Name,Last Name,Specialty,Date,Available Slots
+Jamil,Ahmad,Cardiology,2025-01-21,"09:00-09:30,10:00-10:30,11:00-11:30"
 ```
 
-Each row represents a time slot when a doctor is available. The chatbot references this file to determine availability.
+## 🛠️ How It Works
 
-## 🔗 Related Resources
+1. **Chat Interface** - Continuous conversation loop with user input
+2. **AI Processing** - OpenAI processes queries and determines if function calling needed  
+3. **Function Calling** - When appointment-related, calls `is_doctor_available` function
+4. **Schedule Check** - Reads CSV file to verify doctor availability
+5. **Response** - AI provides natural language response with results
+
+## 🔗 Resources
 
 - [Medium Article: Building a Doctor’s Appointment Chat Application with Golang and OpenAI](https://medium.com/@jamil.ahmad7720/building-a-doctors-appointment-chat-application-with-golang-and-openai-a-step-by-step-guide-3cbb4357ea2a)
 - [OpenAI Go SDK](https://github.com/openai/openai-go)
 
-## 📬 Contact
+## 📞 Contact
 
-For questions or feedback, feel free to reach out:
-
-- **Author**: Jamil Ahmad
-- **Email**: jamil.ahmad7720@gmailcom
-- **LinkedIn**: [LinkedIn](https://www.linkedin.com/in/jamil-ahmad-7720/)
+**Jamil Ahmad**  
+📧 jamil.ahmad7720@gmail.com  
+💼 [LinkedIn](https://www.linkedin.com/in/jamil-ahmad-7720/)
 
 ---
 
-*This project is a demonstration of integrating OpenAI's Function Calling with a Golang application to create a functional and interactive chatbot for scheduling doctor appointments.*
+*Demo project showcasing OpenAI Function Calling integration with Go for intelligent appointment scheduling.*
